@@ -10,8 +10,8 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
 @Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-public interface RecordMapper {
-    @Mapping(source = "customer.name", target = "customerName")
+public interface RecordMapStruct {
+    @Mapping(target = "customerName", expression = "java(recordDO.getCustomer() != null ? recordDO.getCustomer().getName() : null)")
     RecordVO toVO(ConsumeRecordDO recordDO);
     
     ConsumeRecordDO toDO(CreateRecordDTO createRecordDTO);

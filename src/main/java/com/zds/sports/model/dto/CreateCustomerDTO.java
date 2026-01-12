@@ -1,14 +1,14 @@
 package com.zds.sports.model.dto;
 
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
 public class CreateCustomerDTO {
-    @NotBlank(message = "Name is required")
+    @NotNull
     private String name;
+    @NotNull
     private String phone;
     private String email;
-    @NotBlank(message = "Status is required")
     private String status;
 }

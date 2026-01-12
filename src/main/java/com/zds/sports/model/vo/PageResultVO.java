@@ -1,17 +1,25 @@
 package com.zds.sports.model.vo;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.util.List;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class PageResultVO<T> {
-    private List<T> list;
     private long total;
-    private int page;
-    private int size;
+    private long size;
+    private long page;
+    private long pages;
+    private List<T> records;
+    private List<T> list; // 兼容前端使用的list字段
+
+    public PageResultVO() {}
+
+    public PageResultVO(long total, long size, long current, long pages, List<T> records) {
+        this.total = total;
+        this.size = size;
+        this.page = current;
+        this.pages = pages;
+        this.records = records;
+        this.list = records; // 同时设置list字段
+    }
 }

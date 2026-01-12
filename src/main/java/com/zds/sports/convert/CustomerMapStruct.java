@@ -9,7 +9,7 @@ import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 
 @Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-public interface CustomerMapper {
+public interface CustomerMapStruct {
     CustomerVO toVO(CustomerDO customerDO);
     CustomerDO toDO(CreateCustomerDTO createCustomerDTO);
     void updateDO(UpdateCustomerDTO updateCustomerDTO, @MappingTarget CustomerDO customerDO);

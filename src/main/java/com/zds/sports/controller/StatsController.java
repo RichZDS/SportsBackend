@@ -1,6 +1,6 @@
 package com.zds.sports.controller;
 
-import com.zds.sports.logic.ConsumeRecordLogic;
+import com.zds.sports.service.ConsumeRecordService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.YearMonth;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +21,7 @@ import java.util.Map;
 @Tag(name = "Statistics", description = "APIs for statistics")
 public class StatsController {
 
-    private final ConsumeRecordLogic recordLogic;
+    private final ConsumeRecordService consumeRecordService;
 
     @GetMapping("/monthly")
     @Operation(summary = "Get monthly consumption statistics")
@@ -30,7 +29,7 @@ public class StatsController {
         int targetYear = year != null ? year : LocalDate.now().getYear();
         LocalDateTime start = LocalDateTime.of(targetYear, 1, 1, 0, 0, 0);
         LocalDateTime end = LocalDateTime.of(targetYear, 12, 31, 23, 59, 59);
-        return recordLogic.getMonthlyStats(start, end);
+        return consumeRecordService.getMonthlyStats(start, end);
     }
 
     @GetMapping("/category")
@@ -44,6 +43,6 @@ public class StatsController {
         if (end == null) {
             end = LocalDateTime.now();
         }
-        return recordLogic.getCategoryStats(start, end);
+        return consumeRecordService.getCategoryStats(start, end);
     }
 }

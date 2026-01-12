@@ -1,39 +1,26 @@
 package com.zds.sports.domain.entity;
 
-import jakarta.persistence.*;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import java.time.LocalDateTime;
 
 @Data
-@Entity
-@Table(name = "customers")
-@EntityListeners(AuditingEntityListener.class)
+@TableName("customers")
 public class CustomerDO {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @TableId(type = IdType.AUTO)
     private Long id;
 
-    @Column(nullable = false, length = 64)
     private String name;
 
-    @Column(length = 20)
     private String phone;
 
-    @Column(length = 128)
     private String email;
 
-    @Column(nullable = false, length = 16)
     private String status;
 
-    @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createdAt;
 
-    @LastModifiedDate
-    @Column(name = "updated_at", nullable = false)
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updatedAt;
 }

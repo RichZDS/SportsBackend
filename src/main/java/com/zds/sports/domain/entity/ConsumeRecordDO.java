@@ -1,47 +1,33 @@
 package com.zds.sports.domain.entity;
 
-import jakarta.persistence.*;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Data
-@Entity
-@Table(name = "consume_records")
-@EntityListeners(AuditingEntityListener.class)
+@TableName("consume_records")
 public class ConsumeRecordDO {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @TableId(type = IdType.AUTO)
     private Long id;
 
-    @Column(name = "customer_id", nullable = false)
     private Long customerId;
 
-    @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal amount;
 
-    @Column(nullable = false, length = 32)
     private String category;
 
-    @Column(length = 255)
     private String remark;
 
-    @Column(name = "paid_at", nullable = false)
     private LocalDateTime paidAt;
 
-    @CreatedDate
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createdAt;
 
-    @LastModifiedDate
-    @Column(name = "updated_at", nullable = false)
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updatedAt;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_id", insertable = false, updatable = false)
+    
+    // For MapStruct convenience (optional, but generated code didn't have relations)
+    @TableField(exist = false)
     private CustomerDO customer;
 }

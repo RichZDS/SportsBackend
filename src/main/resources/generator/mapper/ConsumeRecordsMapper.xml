@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="generator.mapper.ConsumeRecordsMapper">
+
+    <resultMap id="BaseResultMap" type="generator.domain.ConsumeRecords">
+            <id property="id" column="id" />
+            <result property="customerId" column="customer_id" />
+            <result property="amount" column="amount" />
+            <result property="category" column="category" />
+            <result property="remark" column="remark" />
+            <result property="paidAt" column="paid_at" />
+            <result property="createdAt" column="created_at" />
+            <result property="updatedAt" column="updated_at" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,customer_id,amount,category,remark,paid_at,
+        created_at,updated_at
+    </sql>
+</mapper>

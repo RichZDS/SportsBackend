@@ -1,8 +1,8 @@
 package com.zds.sports.controller;
 
-import com.zds.sports.logic.ConsumeRecordLogic;
 import com.zds.sports.model.vo.PageResultVO;
 import com.zds.sports.model.vo.RecordVO;
+import com.zds.sports.service.ConsumeRecordService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 @Tag(name = "Customer Side", description = "APIs for customer self-service")
 public class CustomerSideController {
 
-    private final ConsumeRecordLogic recordLogic;
+    private final ConsumeRecordService consumeRecordService;
 
     // TODO: In a real system, get customerId from security context
     private static final Long MOCK_CUSTOMER_ID = 1L;
@@ -31,6 +31,6 @@ public class CustomerSideController {
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(required = false) LocalDateTime start,
             @RequestParam(required = false) LocalDateTime end) {
-        return recordLogic.getRecords(page, size, MOCK_CUSTOMER_ID, null, start, end);
+        return consumeRecordService.getRecords(page, size, MOCK_CUSTOMER_ID, null, start, end);
     }
 }
