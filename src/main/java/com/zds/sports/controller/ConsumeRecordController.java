@@ -12,6 +12,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 @RestController
 @RequestMapping("/api/records")
 @RequiredArgsConstructor
@@ -25,8 +27,12 @@ public class ConsumeRecordController {
     public PageResultVO<RecordVO> getRecords(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size,
-            @RequestParam(required = false) String keyword) {
-        return consumeRecordService.getRecords(page, size, keyword);
+            @RequestParam(required = false) Long customerId,
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) String keyword,
+            @RequestParam(required = false) LocalDateTime start,
+            @RequestParam(required = false) LocalDateTime end) {
+        return consumeRecordService.getRecords(page, size, customerId, category, keyword, start, end);
     }
 
     @PostMapping

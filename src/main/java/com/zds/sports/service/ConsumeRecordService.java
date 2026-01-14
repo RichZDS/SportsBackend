@@ -14,6 +14,7 @@ import java.util.Map;
 public interface ConsumeRecordService extends IService<ConsumeRecordDO> {
     PageResultVO<RecordVO> getRecords(int page, int size, String keyword);
     PageResultVO<RecordVO> getRecords(int page, int size, Long customerId, String keyword, LocalDateTime start, LocalDateTime end);
+    PageResultVO<RecordVO> getRecords(int page, int size, Long customerId, String category, String keyword, LocalDateTime start, LocalDateTime end);
     RecordVO createRecord(CreateRecordDTO createRecordDTO);
     RecordVO updateRecord(Long id, UpdateRecordDTO updateRecordDTO);
     void deleteRecord(Long id);

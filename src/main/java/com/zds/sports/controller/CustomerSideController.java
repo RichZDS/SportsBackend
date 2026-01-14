@@ -31,6 +31,6 @@ public class CustomerSideController {
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(required = false) LocalDateTime start,
             @RequestParam(required = false) LocalDateTime end) {
-        return consumeRecordService.getRecords(page, size, MOCK_CUSTOMER_ID, null, start, end);
+        return consumeRecordService.getRecords(page, size, MOCK_CUSTOMER_ID, null, null, start, end);
     }
 }

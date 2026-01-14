@@ -29,16 +29,25 @@ public class ConsumeRecordServiceImpl extends ServiceImpl<ConsumeRecordMapper, C
 
     @Override
     public PageResultVO<RecordVO> getRecords(int page, int size, String keyword) {
-        return getRecords(page, size, null, keyword, null, null);
+        return getRecords(page, size, null, null, keyword, null, null);
     }
 
     @Override
     public PageResultVO<RecordVO> getRecords(int page, int size, Long customerId, String keyword, LocalDateTime start, LocalDateTime end) {
+        return getRecords(page, size, customerId, null, keyword, start, end);
+    }
+
+    @Override
+    public PageResultVO<RecordVO> getRecords(int page, int size, Long customerId, String category, String keyword, LocalDateTime start, LocalDateTime end) {
         Page<ConsumeRecordDO> pageParam = new Page<>(page, size);
         LambdaQueryWrapper<ConsumeRecordDO> wrapper = new LambdaQueryWrapper<>();
         
         if (customerId != null) {
             wrapper.eq(ConsumeRecordDO::getCustomerId, customerId);
+        }
+        
+        if (StringUtils.hasText(category)) {
+            wrapper.eq(ConsumeRecordDO::getCategory, category);
         }
         
         if (StringUtils.hasText(keyword)) {
