@@ -1,9 +1,10 @@
 package com.zds.sports.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.lang.String;
 
 @Data
 public class CreateCourseDTO {
@@ -18,7 +19,8 @@ public class CreateCourseDTO {
     @NotNull
     private BigDecimal price;
     @NotNull
-    private LocalDateTime scheduleTime;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    private String scheduleTime;
     @NotNull
     private String status;
 }

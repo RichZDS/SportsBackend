@@ -1,8 +1,9 @@
 package com.zds.sports.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.lang.String;
 
 @Data
 public class UpdateCourseDTO {
@@ -12,7 +13,8 @@ public class UpdateCourseDTO {
     private Integer durationMinutes;
     private Integer maxParticipants;
     private BigDecimal price;
-    private LocalDateTime scheduleTime;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    private String scheduleTime;
     private String status;
 }
 
